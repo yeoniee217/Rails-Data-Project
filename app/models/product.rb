@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  # columns: id, name, price, stock_quantity
   # belongs_to :order
   has_many :orders
 
