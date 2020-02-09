@@ -10,12 +10,17 @@
   </head>
 
   <body>
-    <header>
-      <h1>JL Rails Project</h1>
-      <p>
-        <%= link_to 'Home', root_path %>
-      </p>
-    </header>
-    <%= yield %>
+    <div class="container">
+      <header>
+        <h1>JL Rails Data Project</h1>
+        <p>
+          <%= link_to 'Home', root_path %>
+        </p>
+      </header>
+      <%= yield %>
+      <footer>
+        Copyright Jihyeon 2020.
+      </footer>
+    </div>
   </body>
 </html>
