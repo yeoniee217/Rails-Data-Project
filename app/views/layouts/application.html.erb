@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsDataProject</title>
+    <title>JL Rails Data Project</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <header>
+      <h1>JL Rails Project</h1>
+      <p>
+        <%= link_to 'Home', root_path %>
+      </p>
+    </header>
     <%= yield %>
   </body>
 </html>
