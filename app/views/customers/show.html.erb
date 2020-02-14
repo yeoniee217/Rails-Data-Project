@@ -1,0 +1,22 @@
+<h2><%= @customer.name %></h2>
+<p>Personal Information<br/>
+  Address: <%= @customer.address %><br/>
+  Phone Number: <%= @customer.phone_number %><br/>
+  Email: <%= @customer.email %>
+</p>
+<br/>
+<p>
+  You have total <%= @customer.orders.size %> orders.
+</p>
+
+<br/>
+<h3>Order History</h3>
+<% if @customer.orders.empty? %>
+  <p>There are no orders.</p>
+<% else %>
+  <ul>
+    <% @customer.orders.each do |order| %>
+      <li><%= link_to order.order_date, order %></li>
+    <% end %>
+  </ul>
+<% end %>
