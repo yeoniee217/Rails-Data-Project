@@ -1,2 +1,16 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h2><%= @order.order_date %></h2>
+<p>
+  There are <%= @order.products.size %> products associated to this order.
+</p>
+
+<br/>
+<h3>Products for this order</h3>
+<% if @order.products.empty? %>
+  <p>There are no products for this order.</p>
+<% else %>
+  <ul>
+    <% @order.products.each do |product| %>
+      <li><%= link_to product.name, product %></li>
+    <% end %>
+  </ul>
+<% end %>
