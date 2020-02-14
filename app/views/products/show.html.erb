@@ -5,13 +5,14 @@
 <p>Price: $<%= @product.price %></p>
 <p>Stock Quantity: <%= @product.stock_quantity %></p>
 
-<h3>Orders for this product <%= @product.name %></h3>
+<br/>
+<h3>Orders for this product <%= @product.name %>.</h3>
 <% if @product.orders.empty? %>
   <p>There are no orders for this product.</p>
 <% else %>
   <ul>
     <% @product.orders.each do |order| %>
-      <li><%= order.customer.name %> ordered this product on <%= order.order_date %></li>
+      <li><%= link_to order.customer.name, order.customer %> ordered this product on <%= link_to order.order_date, order %></li>
     <% end %>
   </ul>
 <% end %>
