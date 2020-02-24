@@ -45,3 +45,15 @@ body {
 label {
   font-weight: bold;
 }
+
+.font-normal {
+  font-weight: normal !important;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+ul {
+  list-style: inside !important;
+}
