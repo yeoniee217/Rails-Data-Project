@@ -10,7 +10,7 @@
           <h5 class="title is-5 mt-4">Products Ordered</h5>
           <ul>
             <% @order.products.each do |product| %>
-              <li><%= link_to product.name, product %></li>
+              <li style="margin-bottom: 5px"><%= link_to product.name, product %></li>
             <% end %>
           </ul>
         </div>

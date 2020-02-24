@@ -17,7 +17,7 @@
     <p class="title is-4"><%= @product.orders.size %> orders for this product</p>
     <ul>
     <% @product.orders.each do |order| %>
-      <li>#<%= link_to order.order_num.to_s.rjust(4, "0"), order %> &nbsp;<%= order.order_date.strftime("%Y-%m-%d") %></li>
+      <li><strong>#<%= link_to order.order_num.to_s.rjust(4, "0"), order %></strong> &nbsp;<%= order.order_date.strftime("%Y-%m-%d") %></li>
     <% end %>
     </ul>
     <% end %>
