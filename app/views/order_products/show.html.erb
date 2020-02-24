@@ -1,2 +1,23 @@
-<h1>OrderProducts#show</h1>
-<p>Find me in app/views/order_products/show.html.erb</p>
+<h4 class="title is-4">Order Details</h4>
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title is-4">Order Number: <%= @order_product.order.order_num.to_s.rjust(4, "0") %></p>
+        <p class="title is-4">Order Date: <%= @order_product.order.order_date.strftime("%Y-%m-%d") %></p>
+        <p class="subtitle margin-top"><label>Ordered Product Name: </label><%= @order_product.product.name %></p>
+        <p class="subtitle"><label>Price: </label>$<%= @order_product.product.price %></p>
+        <p class="subtitle"><label>Stock Quantity: </label><%= @order_product.product.stock_quantity %></p>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+      <p class="title is-4">Customer Information</p>
+      <p class="subtitle"><label>Name: </label> <%= @order_product.order.customer.name %></p>
+      <p class="subtitle margin-top"><label>Address: </label> <%= @order_product.order.customer.address %></p>
+      <p class="subtitle margin-top"><label>Phone Number: </label> <%= @order_product.order.customer.phone_number %></p>
+      <p class="subtitle margin-top"><label>Email: </label> <%= @order_product.order.customer.email %></p>
+    </article>
+  </div>
+</div>
