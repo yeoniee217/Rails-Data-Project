@@ -1,18 +1,26 @@
-<h2><%= @product.name %></h2>
-<p>
-  There are <%= @product.orders.size %> orders associated to this product.
-</p>
-<p>Price: $<%= @product.price %></p>
-<p>Stock Quantity: <%= @product.stock_quantity %></p>
-
-<br/>
-<h3>Orders for this product <%= @product.name %>.</h3>
-<% if @product.orders.empty? %>
-  <p>There are no orders for this product.</p>
-<% else %>
-  <ul>
+<h4 class="title">Product Details</h4>
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title is-4"><%= @product.name %></p>
+        <p class="title is-5 mt-4">Price: <span class="font-normal">$<%= @product.price %></span></p>
+        <p class="title is-5 margin-top">Stock Quantity:  <span class="font-normal"><%= @product.stock_quantity %></span></p>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+    <% if @product.orders.empty? %>
+      <p class="subtitle">There are no orders for this product.</p>
+    <% else %>
+    <p class="title is-4"><%= @product.orders.size %> orders for this product</p>
+    <ul>
     <% @product.orders.each do |order| %>
-      <li><%= link_to order.customer.name, order.customer %> ordered this product on <%= link_to order.order_date, order %></li>
+      <li>#<%= link_to order.order_num.to_s.rjust(4, "0"), order %> &nbsp;<%= order.order_date.strftime("%Y-%m-%d") %></li>
     <% end %>
-  </ul>
-<% end %>
+    </ul>
+    <% end %>
+    </article>
+  </div>
+</div>
