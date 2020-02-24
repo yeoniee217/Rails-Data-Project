@@ -15,15 +15,33 @@
  *= require_self
  */
 
+/* .title p.subtitle {
+  color: #111 !important;
+} */
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #111 !important;
+}
+
  .navbar {
    min-height: 4rem;
  }
 
  .navFont {
-  font-family: 'Russo One', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 17px;
+  font-weight: bold;
+}
+
+.title:not(.is-spaced)+.subtitle {
+  margin-top: 3rem;
 }
 
 .title:not(:last-child) {
   margin-bottom: 2rem;
+}
+
+label {
+  font-weight: bold;
 }
