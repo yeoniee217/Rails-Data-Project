@@ -1,22 +1,29 @@
-<h2><%= @customer.name %></h2>
-<p>Personal Information<br/>
-  Address: <%= @customer.address %><br/>
-  Phone Number: <%= @customer.phone_number %><br/>
-  Email: <%= @customer.email %>
-</p>
-<br/>
-<p>
-  You have total <%= @customer.orders.size %> orders.
-</p>
-
-<br/>
-<h3>Order History</h3>
-<% if @customer.orders.empty? %>
-  <p>There are no orders.</p>
-<% else %>
-  <ul>
-    <% @customer.orders.each do |order| %>
-      <li><%= link_to order.order_date, order %></li>
+<h4 class="title">Customer Information</h4>
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title is-4"><%= @customer.name %></p>
+        <p class="title is-5 mt-4">Address: <span class="font-normal"><%= @customer.address %></span></p>
+        <p class="title is-5 margin-top">Phone Number: <span class="font-normal"><%= @customer.phone_number %></span></p>
+        <p class="title is-5 margin-top">Email: <span class="font-normal"><%= @customer.email %></span></p>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+    <% if @customer.orders.empty? %>
+      <p class="subtitle">There are no orders from this customer.</p>
+    <% else %>
+      <p class="title is-4">Order History</p>
+      <p class="title is-5" style="margin-top: 2.5rem"><%= @customer.orders.size %> orders <span class="font-normal">placed</span></p>
+      <ul>
+        <% @customer.orders.each do |order| %>
+        <li style="margin-bottom: 5px"><strong>#<%= link_to  order.order_num.to_s.rjust(4, "0"), order %></strong> &nbsp;<%= order.order_date.strftime("%Y-%m-%d") %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+    </article>
+  </div>
+</div>
+
