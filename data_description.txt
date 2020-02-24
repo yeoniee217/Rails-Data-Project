@@ -1,0 +1,40 @@
+- Description of my data sources
+
+The data I am using for this project is pulled from 3 different data sources:
+
+Customers data: 
+	- It is pulled from uinames.com. Uinames.com provides random fake names for use 
+	  in designs and mockups.
+	- Structure: A response is returned as JSON format over HTTP(S).
+		     The data is wrapped in the array and each element in the array represents
+		     the customer object in the database.
+	- Stored in "customers" database table.
+	- Database Columns: id, name, address, phone_number, email, created_at, updated_at
+	- Associations: Each customer has 1 or more(many) orders.
+	- Validation: name, address, phone_number, email are required.
+		      email must be unique.
+
+Orders data:
+	- It is created with ruby faker which is a library for generating fake data.
+	- Stored in "orders" database table.
+	- Database Columns: id, order_num, order_date, created_at, updated_at
+	- Associations: Each order belongs to a customer.
+			Each order has many products associated with through "order_products" table.
+	- Validation: order_num, order_date are required.
+		      order_num must be unique and integer.
+
+Products data:
+	- It is pulled from Instacart open data source.
+	- Stored in "products" database table.
+	- Database Columns: id, name, price, stock_quantity, created_at, updated_at, category_id
+	- Associations: Each product belongs to a category.
+			Each product has many orders associated with through "order_products" table.
+	- Validation: name, price are required.
+		      stock_quantity must be integer.
+
+Categories data:
+	- It is pulled from Instacart open data source.
+	- Stored in "categories" database table.
+	- Database Columns: id, name, created_at, updated_at
+	- Associations: Each category has many products.
+	- Validation: name is required.
