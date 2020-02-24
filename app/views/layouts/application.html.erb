@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,7 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
     <link href="app/assets/stylesheets/css/all.min.css" rel="stylesheet">
     <link href="app/assets/stylesheets/css/fontawesome.min.css" rel="stylesheet">
@@ -20,59 +20,45 @@
   </head>
 
   <body>
-    <nav class="navbar is-primary is-transparent" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-primary is-transparent" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item navFont" href="/">JL Order Management System</a>
       </div>
       <div class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="/">
-            Home
-          </a>
           <a class="navbar-item">
             About
-          </a>
-          <a class="navbar-item" href="/categories">
-            Categories
           </a>
           <a class="navbar-item" href="/products">
             Products
           </a>
-          <a class="navbar-item" href="/order_products">
+          <a class="navbar-item" href="/categories">
+            Categories
+          </a>
+          <a class="navbar-item" href="/orders">
             Orders
           </a>
           <a class="navbar-item" href="/customers">
             Customers
           </a>
-          <%# <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              More
-            </a>
-            <div class="navbar-dropdown">
-              <a class="navbar-item">
-                About
-              </a>
-              <a class="navbar-item">
-                Jobs
-              </a>
-              <a class="navbar-item">
-                Contact
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item">
-                Report an issue
-              </a>
-            </div> %>
-          </div>
         </div>
-
         <div class="navbar-end">
           <div class="navbar-item">
             <form action="/" method="get">
               <div class="field is-grouped">
                 <p class="control is-expanded">
-                  <input class="input" type="text" placeholder="Search">
+                  <input class="input" type="text" placeholder="Search Product">
                 </p>
+                <div class="control">
+                  <div class="select">
+                    <select>
+                      <option>All</option>
+                      <% @categories.each do |category| %>
+                        <option><%= category.name %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                </div>
                 <p class="control">
                   <button class="button is-light" type="submit">
                     Search
@@ -89,9 +75,9 @@
         <%= yield %>
         <%# <footer class="footer">
           Copyright JL Rails Data Project 2020.
-        </footer> %>
+        </footer> #%>
       </div>
     </section>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
   </body>
 </html>
