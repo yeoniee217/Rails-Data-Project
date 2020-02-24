@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 require "csv" # have to specify??
 require "json"
@@ -25,7 +20,7 @@ products_json = CSV.read(products_file_name, headers: true).map(&:to_hash)
 
 num_of_customers = rand(100..130)
 customers_url = "https://uinames.com/api/?ext&amount=#{num_of_customers}"
-customers_response = Net::HTTP. get(URI(customers_url))
+customers_response = Net::HTTP.get(URI(customers_url))
 customers_data = JSON.parse(customers_response)
 
 aisles_json.each do |aisle_data|
@@ -33,7 +28,7 @@ aisles_json.each do |aisle_data|
 
   next unless category.persisted?
 
-  products_json[0..2500].each do |product_data|
+  products_json[0..500].each do |product_data|
     if aisle_data["aisle_id"] == product_data["aisle_id"]
       category.products.create(name: product_data["product_name"], price: Faker::Commerce.price, stock_quantity: Faker::Number.non_zero_digit)
     end
@@ -61,28 +56,18 @@ customers_data.each do |customer_data|
     order = customer.orders.create(order_num: order_num, order_date: Faker::Date.between(from: 3.year.ago, to: Date.today))
     next unless order.persisted?
 
-    num_of_products = 5
-    product_offset = rand(Product.count..Product.count - num_of_products)
+    num_of_products = rand(3..7)
+    product_offset = rand(Product.count - num_of_products)
     products = Product.offset(product_offset).limit(num_of_products)
-    random_products = products.sample(rand(2..5))
+    # random_products = products.sample(rand(2..5))
 
-    random_products.each do |product|
-      order.order_products.create(order: order, product: product)
+    products.each do |product|
+      OrderProduct.create(order: order, product: product)
     end
 
     order_num += 1
   end
 end
-
-# num_of_orders =
-# orders = Order.all
-# orders.each do |order|
-#   products = Product.all
-#   # random_num = rand(5)
-#   products.each do |product|
-#     OrderProduct.create(order: order, product: product)
-#   end
-# end
 
 puts "Created #{Category.count} aisles."
 puts "Created #{Product.count} products."
