@@ -1,17 +1,21 @@
-<h3 class="title is-3">Orders</h3>
+<h3 class="title">Orders</h3>
 <% if @orders.empty? %>
 <p>There are no orders.</p>
 <% else %>
 <table id="orders_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
   <thead>
     <tr>
+      <th class="th-sm">Order Number</th>
       <th class="th-sm">Order Date</th>
+      <th class="th-sm">Customer Name</th>
     </tr>
   </thead>
   <tbody>
   <% @orders.each do |order| %>
     <tr>
-      <td><%= link_to order.order_date, order %></td>
+      <td><%= link_to order.order_num.to_s.rjust(4, "0"), order %></td>
+      <td><%= order.order_date.strftime("%Y-%m-%d") %></td>
+      <td><%= order.customer.name %></td>
     </tr>
   <% end %>
   </tbody>
